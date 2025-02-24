@@ -2,12 +2,6 @@
 WIP
 
 ## Repositories
----
-title: Repositories
-cascade:
-    type: docs
-weight: 3
-------
 
 ### Introduction
 Repositories are classes or components that encapsulate the logic required to access data sources. With the implementation of repositories we create an abstraction layer between our Controllers and Models, to create business logic to interact with our (eloquent) models.
