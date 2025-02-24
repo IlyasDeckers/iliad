@@ -202,3 +202,133 @@ class ContractRepository extends _BaseRepository implements ContractRepositoryIn
 * `update()`
 * `store()`
 * `destroy()`
+
+
+## Requests
+
+Through HTTP requests, in the query parameters, we can specify different parameters that each have their own function.
+We can eager load relationships, sort, exclude properties,...
+
+### Request query parameters
+Example HTTP request:  
+`/api/v1/users?with=invoices,purchases&scopes=management`
+
+The following parameters can be used in a query string.
+* `with`: loads in relationships
+* `scopes`: applies model scopes
+* `paginate`: paginates the response
+* `sort`: sorts the response
+* `groupBy`: groups the response
+
+#### with
+Relationships and are defined in the query string of the API call by passing a `with` param. It is possible to eager load
+relationships of models passed into this query string. Eg. `contracts.extensions.docusign`
+
+An example:
+
+`/api/users/1?with=vehicle,supplier,contracts.extensions`
+
+This API call will return a user with id 1, his vehicle, supplier and all contracts with it's extensions. The repsonse
+will look like this;
+
+```json
+{
+  "id": 1,
+  // ...
+  "vehicle": {},
+  "supplier": {},
+  "contracts": [
+    {
+      "id": 1,
+      "extensions": [
+        {}
+      ]
+    }
+  ],
+  // ...
+}
+```
+
+#### scopes
+Scopes on models allow you to define common sets of constraints that you may easily re-use throughout your application. 
+For example, you may need to frequently retrieve all users that are "active". To define a scope, prefix an Eloquent 
+model method with scope.
+
+```php
+    /**
+     * Scope to only include active users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('active', 1);
+    }
+```
+
+Our HTTP request will look like this: `GET /api/v1/users?scopes=active`
+
+```json
+
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "active": true
+    }
+]
+```
+
+#### Exclude
+Sometimes when calling relationships we retrieve a lot of extra information that is eager loaded by Eloquent that we do
+not need. We can exclude these properties by using the `exclude` param.
+
+Not all properties are excludable, they need to be defined on the DataObject of the corresponding model in a
+`allowedRequestExcept()` method.
+
+An example of ContractData's allowed excepts.
+```php
+public static function allowedRequestExcept(): ?array
+{
+    return [
+        'extensions',
+        'definitions',
+        'tariffs',
+        'audits',
+        'extension',
+        'user'
+    ];
+}
+```
+
+`/api/contracts/1?with=extensions&except=definitions,extensions.text`
+
+This API request will return a contract without the definitions and the extensions text property.
+
+#### paginate
+Pagination is disabled by default. You can add the `paginate` and `per_page` query parameters.
+
+```
+GET /api/v1/users?paginate=true&per_page=5
+```
+This will paginate the results returned and group them per 5 items in a collection.
+
+#### sort
+WIP
+
+#### groupBy
+Group your results by a given key.
+
+```
+GET /api/v1/users?groupBy=type
+
+[
+    "employee": [
+        ...
+    ],
+    "management": [
+        ...
+    ]
+]
+```
