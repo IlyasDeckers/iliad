@@ -1,18 +1,18 @@
 <?php
 
-namespace Clockwork\Core\RouteAttributes;
+namespace Iliad\RouteAttributes;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use ReflectionAttribute;
 use ReflectionClass;
-use Clockwork\Core\RouteAttributes\Attributes\Defaults;
-use Clockwork\Core\RouteAttributes\Attributes\Fallback;
-use Clockwork\Core\RouteAttributes\Attributes\RouteAttribute;
-use Clockwork\Core\RouteAttributes\Attributes\ScopeBindings;
-use Clockwork\Core\RouteAttributes\Attributes\WhereAttribute;
-use Clockwork\Core\RouteAttributes\Attributes\WithTrashed;
+use Iliad\RouteAttributes\Attributes\Defaults;
+use Iliad\RouteAttributes\Attributes\Fallback;
+use Iliad\RouteAttributes\Attributes\RouteAttribute;
+use Iliad\RouteAttributes\Attributes\ScopeBindings;
+use Iliad\RouteAttributes\Attributes\WhereAttribute;
+use Iliad\RouteAttributes\Attributes\WithTrashed;
 use Illuminate\Routing\Route;
 use SplFileInfo;
 use Symfony\Component\Finder\Finder;

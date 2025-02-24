@@ -1,19 +1,19 @@
 <?php
 
-namespace Clockwork\Core\RouteAttributes;
+namespace Iliad\RouteAttributes;
 
 use ReflectionClass;
-use Clockwork\Core\RouteAttributes\Attributes\Defaults;
-use Clockwork\Core\RouteAttributes\Attributes\Domain;
-use Clockwork\Core\RouteAttributes\Attributes\DomainFromConfig;
-use Clockwork\Core\RouteAttributes\Attributes\Group;
-use Clockwork\Core\RouteAttributes\Attributes\Middleware;
-use Clockwork\Core\RouteAttributes\Attributes\Prefix;
-use Clockwork\Core\RouteAttributes\Attributes\Resource;
-use Clockwork\Core\RouteAttributes\Attributes\RouteAttribute;
-use Clockwork\Core\RouteAttributes\Attributes\ScopeBindings;
-use Clockwork\Core\RouteAttributes\Attributes\Where;
-use Clockwork\Core\RouteAttributes\Attributes\WithTrashed;
+use Iliad\RouteAttributes\Attributes\Defaults;
+use Iliad\RouteAttributes\Attributes\Domain;
+use Iliad\RouteAttributes\Attributes\DomainFromConfig;
+use Iliad\RouteAttributes\Attributes\Group;
+use Iliad\RouteAttributes\Attributes\Middleware;
+use Iliad\RouteAttributes\Attributes\Prefix;
+use Iliad\RouteAttributes\Attributes\Resource;
+use Iliad\RouteAttributes\Attributes\RouteAttribute;
+use Iliad\RouteAttributes\Attributes\ScopeBindings;
+use Iliad\RouteAttributes\Attributes\Where;
+use Iliad\RouteAttributes\Attributes\WithTrashed;
 
 class ClassRouteAttributes
 {

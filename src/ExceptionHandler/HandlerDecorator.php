@@ -1,6 +1,6 @@
 <?php
 
-namespace Clockwork\Core\ExceptionHandler;
+namespace Iliad\ExceptionHandler;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;

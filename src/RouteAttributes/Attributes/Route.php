@@ -1,6 +1,6 @@
 <?php
 
-namespace Clockwork\Core\RouteAttributes\Attributes;
+namespace Iliad\RouteAttributes\Attributes;
 
 use Attribute;
 use Illuminate\Support\Arr;

@@ -1,13 +1,13 @@
 <?php
-namespace Clockwork\Core\Http\Controllers;
+namespace Iliad\Http\Controllers;
 
-use Clockwork\Core\Concerns\Validator;
+use Iliad\Concerns\Validator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
-use Clockwork\Core\Http\Controllers\Controller;
+use Iliad\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 
 abstract class BaseController extends Controller

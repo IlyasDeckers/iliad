@@ -1,5 +1,5 @@
 <?php
-namespace Clockwork\Core\Concerns;
+namespace Iliad\Concerns;
 
 trait Editable {
     public function formatMessage(): void

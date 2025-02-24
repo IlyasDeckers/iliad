@@ -1,8 +1,8 @@
 <?php
 
-namespace Clockwork\Core\Http;
+namespace Iliad\Http;
 
-use Clockwork\Core\DataTransferObjects\Dto;
+use Iliad\DataTransferObjects\Dto;
 
 class QueryStringData extends Dto
 {

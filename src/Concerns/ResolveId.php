@@ -1,5 +1,5 @@
 <?php
-namespace Clockwork\Core\Concerns;
+namespace Iliad\Concerns;
 
 use Auth;
 

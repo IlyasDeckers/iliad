@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace Clockwork\Core\DataTransferObjects\Concerns;
+namespace Iliad\DataTransferObjects\Concerns;
 
-use Clockwork\Core\DataTransferObjects\Dto;
+use Iliad\DataTransferObjects\Dto;
 use ReflectionClass;
 
 trait StaticCreateFrom

@@ -1,6 +1,6 @@
 <?php
 
-namespace Clockwork\Core\Pipelines;
+namespace Iliad\Pipelines;
 
 use Closure;
 

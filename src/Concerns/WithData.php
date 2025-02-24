@@ -1,6 +1,6 @@
 <?php
 
-namespace Clockwork\Core\Concerns;
+namespace Iliad\Concerns;
 
 use Spatie\LaravelData\Contracts\BaseData;
 use Spatie\LaravelData\Exceptions\InvalidDataClass;

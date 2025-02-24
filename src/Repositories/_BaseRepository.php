@@ -1,11 +1,11 @@
 <?php
 
-namespace Clockwork\Core\Repositories;
+namespace Iliad\Repositories;
 
-use Clockwork\Core\Concerns\Transaction;
-use Clockwork\Core\Http\QueryStringData;
-//use Clockwork\Core\Http\Request;
-use Clockwork\Core\Repositories\Concerns\QueryBuilder;
+use Iliad\Concerns\Transaction;
+use Iliad\Http\QueryStringData;
+//use Iliad\Http\Request;
+use Iliad\Repositories\Concerns\QueryBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use ReflectionException;

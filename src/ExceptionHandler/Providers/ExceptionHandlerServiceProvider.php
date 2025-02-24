@@ -1,9 +1,9 @@
 <?php
 
-namespace Clockwork\Core\ExceptionHandler\Providers;
+namespace Iliad\ExceptionHandler\Providers;
 
-use Clockwork\Core\ExceptionHandler\HandlerDecorator;
-use Clockwork\Core\ExceptionHandler\HandlersRepository;
+use Iliad\ExceptionHandler\HandlerDecorator;
+use Iliad\ExceptionHandler\HandlersRepository;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\ServiceProvider;
 

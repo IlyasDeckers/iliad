@@ -1,6 +1,6 @@
 <?php
 
-namespace Clockwork\Core\RouteAttributes;
+namespace Iliad\RouteAttributes;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
@@ -9,11 +9,11 @@ class RouteAttributesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
+//        if ($this->app->runningInConsole()) {
 //            $this->publishes([
 //                __DIR__ . '/../config/route-attributes.php' => config_path('route-attributes.php'),
 //            ], 'config');
-        }
+//        }
 
         $this->registerRoutes();
     }

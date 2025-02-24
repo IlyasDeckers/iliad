@@ -1,6 +1,6 @@
 <?php
 
-namespace Clockwork\Core\Http;
+namespace Iliad\Http;
 
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\Exception\UnexpectedValueException;

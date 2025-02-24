@@ -1,6 +1,6 @@
 <?php
 
-namespace Clockwork\Core\Http\Controllers;
+namespace Iliad\Http\Controllers;
 
 use BadMethodCallException;
 use Illuminate\Routing\ControllerMiddlewareOptions;

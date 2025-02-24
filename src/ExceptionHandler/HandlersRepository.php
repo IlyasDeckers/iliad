@@ -1,5 +1,5 @@
 <?php
-namespace Clockwork\Core\ExceptionHandler;
+namespace Iliad\ExceptionHandler;
 
 use ReflectionFunction;
 use Throwable;

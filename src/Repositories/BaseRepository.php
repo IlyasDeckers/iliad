@@ -1,7 +1,7 @@
 <?php
-namespace Clockwork\Core\Repositories;
+namespace Iliad\Repositories;
 
-use Clockwork\Core\Concerns\Transaction;
+use Iliad\Concerns\Transaction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;

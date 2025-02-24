@@ -1,9 +1,9 @@
 <?php
 
-namespace Clockwork\Core\Repositories\Concerns;
+namespace Iliad\Repositories\Concerns;
 
-use Clockwork\Core\Http\QueryStringData;
-use Clockwork\Core\Http\Request;
+use Iliad\Http\QueryStringData;
+use Iliad\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\Contracts\BaseData;

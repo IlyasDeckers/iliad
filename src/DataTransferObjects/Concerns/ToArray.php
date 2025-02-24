@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Clockwork\Core\DataTransferObjects\Concerns;
+namespace Iliad\DataTransferObjects\Concerns;
 
 trait ToArray
 {

@@ -1,5 +1,5 @@
 {
-  "name": "iliad/base-module",
+  "name": "ody/base-module",
   "description": "A base module for developing rest APIs in PHP with Eloquent.",
   "version": "0.0.1",
   "minimum-stability": "dev",
@@ -10,13 +10,20 @@
       "email": "deckersilyas@gmail.com"
     }
   ],
+  "platform": {
+    "php": "^8.3"
+  },
   "require": {
+    "php": "^8.3",
     "illuminate/database": "^v11.43.2"
 
   },
+  "require-dev": {
+    "phpunit/phpunit": "^9.6"
+  },
   "autoload": {
     "psr-4": {
-      "Iliad\\Base\\": "src/"
+      "Iliad\\": "src/"
     },
     "files": [
       "src/helpers.php"
