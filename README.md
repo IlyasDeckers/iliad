@@ -104,20 +104,6 @@ an exception. It commits to the database automatically when needed.
 ```php
 <?php
 
-namespace Clockwork\Contracts\Repositories;
-
-use Clockwork\Base\_BaseRepository;
-use Clockwork\Base\Traits\Transaction;
-use Clockwork\Contracts\Actions\CreateContract;
-use Clockwork\Contracts\Actions\CreateContractExtension;
-use Clockwork\Contracts\Actions\GetActiveExtensionQuery;
-use Clockwork\Contracts\Actions\UpdateContract;
-use Clockwork\Contracts\Interfaces\ContractRepositoryInterface;
-use Clockwork\Contracts\Models\Contract;
-use Clockwork\Contracts\Services\ContractService;
-use Clockwork\DataObjects\ContractData;
-use Spatie\LaravelData\Exceptions\InvalidDataClass;
-
 class ContractRepository extends _BaseRepository implements ContractRepositoryInterface
 {
     use Transaction;
@@ -126,20 +112,13 @@ class ContractRepository extends _BaseRepository implements ContractRepositoryIn
 
     /**
      * @param Contract $contract
-     * @param ContractService $contractService
-     * @param GetActiveExtensionQuery $getActiveExtensionQuery
      * @param CreateContract $createContract
-     * @param CreateContractExtension $createContractExtension
      * @param UpdateContract $updateContract
-     * @throws InvalidDataClass
      */
     public function __construct(
-        Contract                                   $contract,
-        protected ContractService                  $contractService,
-        protected readonly GetActiveExtensionQuery $getActiveExtensionQuery,
-        protected readonly CreateContract          $createContract,
-        protected readonly CreateContractExtension $createContractExtension,
-        protected readonly UpdateContract          $updateContract,
+        Contract $contract,
+        protected readonly CreateContract $createContract,
+        protected readonly UpdateContract $updateContract,
     )
     {
         parent::__construct();
@@ -167,7 +146,6 @@ class ContractRepository extends _BaseRepository implements ContractRepositoryIn
      */
     public function update(ContractData $data): ContractData
     {
-        $request = request();
         $contract = $this->updateContract->execute($data);
         
         $this->commitTransactions(); // or $this->flush();
