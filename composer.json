@@ -1,0 +1,25 @@
+{
+  "name": "iliad/base-module",
+  "description": "A base module for developing rest APIs in PHP with Eloquent.",
+  "version": "0.0.1",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ilyas Deckers",
+      "email": "deckersilyas@gmail.com"
+    }
+  ],
+  "require": {
+    "illuminate/database": "^v11.43.2"
+
+  },
+  "autoload": {
+    "psr-4": {
+      "Iliad\\Base\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  }
+}
