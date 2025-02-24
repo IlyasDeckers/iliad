@@ -1,5 +1,5 @@
 {
-  "name": "ody/base-module",
+  "name": "ody/iliad",
   "description": "A base module for developing rest APIs in PHP with Eloquent.",
   "version": "0.0.1",
   "minimum-stability": "dev",
