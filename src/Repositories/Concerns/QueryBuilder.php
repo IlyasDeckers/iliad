@@ -81,9 +81,6 @@ trait QueryBuilder
             $queryData->has('scopes'),
             fn(Builder $query) => $query->scopes($queryData->parseToArray('scopes'))
         )->when(
-            $queryData->has('groupBy'),
-            fn(Builder $query) => $query->groupBy($queryData->groupBy)
-        )->when(
             $queryData->has('paginate'),
             fn(Builder $query) => null // $query->paginate($queryData->per_page) TODO: Implement pagination
         );
