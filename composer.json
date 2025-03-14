@@ -1,7 +1,7 @@
 {
-  "name": "iliad/base",
+  "name": "odysee/iliad",
   "description": "A base module for developing rest APIs in PHP with Eloquent.",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "license": "MIT",
   "authors": [
     {
@@ -15,8 +15,7 @@
   "require": {
     "php": "^8.3",
     "illuminate/database": "^v11.43.2",
-    "symfony/psr-http-message-bridge": "^v7.1.6",
-    "nyholm/psr7": "^1.8.2"
+    "spatie/laravel-data": "^4.13.1"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.6"
