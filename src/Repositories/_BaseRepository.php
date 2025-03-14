@@ -4,10 +4,8 @@ namespace Iliad\Repositories;
 
 use Iliad\Concerns\Transaction;
 use Iliad\Http\QueryStringData;
-//use Iliad\Http\Request;
 use Iliad\Repositories\Concerns\QueryBuilder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use ReflectionException;
 use Spatie\LaravelData\Contracts\BaseData;
 use Spatie\LaravelData\Data;

@@ -11,7 +11,7 @@ trait StaticCreateFrom
      * @throws \ReflectionException
      * @throws \Exception
      */
-    public static function from(array $values): Dto
+    public static function from(array $values): static
     {
         $dto = new static();
 

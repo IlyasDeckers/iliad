@@ -1,10 +1,10 @@
 <?php
-
+declare(strict_types=1);
 namespace Iliad\Http;
 
 use Iliad\DataTransferObjects\Dto;
 
-class QueryStringData extends Dto
+final class QueryStringData extends Dto
 {
     public ?string $with;
 
