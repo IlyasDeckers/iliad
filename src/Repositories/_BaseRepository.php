@@ -2,9 +2,10 @@
 
 namespace Iliad\Repositories;
 
-use Iliad\Concerns\Transaction;
 use Iliad\Http\QueryStringData;
 use Iliad\Repositories\Concerns\QueryBuilder;
+use Iliad\Transactions\Transaction;
+use Iliad\Transactions\TransactionManager;
 use Illuminate\Database\Eloquent\Model;
 use ReflectionException;
 use Spatie\LaravelData\Contracts\BaseData;
@@ -44,8 +45,8 @@ abstract class _BaseRepository
             throw InvalidDataClass::create($this->dataClass);
         }
 
-        if (request()->getMethod() !== 'GET') {
-            $this->startTransactions();
+        if (!request()->isMethod('get')) {
+            $this->transactionManager->beginTransaction();
         }
     }
 
