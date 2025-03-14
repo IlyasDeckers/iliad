@@ -1,38 +1,53 @@
 <?php
-
 namespace Iliad\Pipelines;
 
 use Closure;
+use InvalidArgumentException;
 
 class Pipeline
 {
-    protected $passable;
-    protected $pipes;
+    protected mixed $passable;
+
+    /**
+     * @var array<int, callable|object|string>
+     */
+    protected array $pipes = [];
 
     protected string $method = 'handle';
 
-    public static function send($passable): static
+    /**
+     * @template T
+     * @param T $passable
+     * @return static
+     */
+    public static function send(mixed $passable): static
     {
         $pipeline = new static;
-
         $pipeline->passable = $passable;
-
         return $pipeline;
     }
 
+    /**
+     * @param array<int, callable|object|string> $pipes
+     * @return $this
+     */
     public function through(array $pipes): static
     {
         $this->pipes = $pipes;
-
         return $this;
     }
 
-    public function then(Closure $destination)
+    /**
+     * @template T
+     * @param Closure(mixed): T $destination
+     * @return T
+     */
+    public function then(Closure $destination): mixed
     {
         $pipeline = array_reduce(
             array_reverse($this->pipes),
             $this->carry(),
-            function ($passable) use ($destination) {
+            function (mixed $passable) use ($destination) {
                 return $destination($passable);
             }
         );
@@ -40,17 +55,18 @@ class Pipeline
         return $pipeline($this->passable);
     }
 
-    public function thenReturn()
+    /**
+     * @return mixed
+     */
+    public function thenReturn(): mixed
     {
-        return $this->then(function ($passable) {
-            return $passable;
-        });
+        return $this->then(fn(mixed $passable) => $passable);
     }
 
     protected function carry(): Closure
     {
-        return function ($stack, $pipe) {
-            return function ($passable) use ($stack, $pipe) {
+        return function (callable $stack, mixed $pipe): Closure {
+            return function (mixed $passable) use ($stack, $pipe): mixed {
                 if (is_callable($pipe)) {
                     return $pipe($passable, $stack);
                 } elseif (is_object($pipe)) {
@@ -59,7 +75,7 @@ class Pipeline
                     $pipeInstance = new $pipe;
                     return $pipeInstance->{$this->method}($passable, $stack);
                 } else {
-                    throw new \InvalidArgumentException('Invalid pipe type.');
+                    throw new InvalidArgumentException('Invalid pipe type.');
                 }
             };
         };

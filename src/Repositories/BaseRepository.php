@@ -1,7 +1,7 @@
 <?php
 namespace Iliad\Repositories;
 
-use Iliad\Concerns\Transaction;
+use Iliad\Transactions\Transaction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;

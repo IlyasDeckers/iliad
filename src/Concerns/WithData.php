@@ -3,10 +3,11 @@
 namespace Iliad\Concerns;
 
 use Spatie\LaravelData\Contracts\BaseData;
+use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Exceptions\InvalidDataClass;
 
 /**
- * @template T
+ * @template T of Data
  */
 trait WithData
 {
@@ -14,7 +15,7 @@ trait WithData
      * @return T
      * @throws InvalidDataClass
      */
-    public function getData()
+    public function getData(): Data
     {
         $dataClass = match (true) {
             /** @psalm-suppress UndefinedThisPropertyFetch */

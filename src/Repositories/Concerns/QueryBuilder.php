@@ -20,7 +20,6 @@ trait QueryBuilder
      * Get a collection with relations,
      * scopes, sorting and filtering.
      *
-     * @param Builder|Model $query
      * @return DataCollection<TDataObject>
      */
     public function collectionResponse(Builder|Model $query): DataCollection
@@ -33,6 +32,9 @@ trait QueryBuilder
         return $this->dataClass::collect($collection, DataCollection::class);
     }
 
+    /**
+     * @return DataCollection<T>
+     */
     public function createCollection(Builder|Model $query): DataCollection
     {
         return $query->get();
@@ -41,7 +43,6 @@ trait QueryBuilder
     /**
      * Transforms a query into a data collection.
      *
-     * @param Builder|Model $query
      * @return DataCollection<TDataObject>
      * @throws InvalidDataClass
      */
@@ -64,10 +65,6 @@ trait QueryBuilder
      * `scopes` queries defined scopes on a model eg. byMonth
      * `count` returns the amount of records a defined relation has
      * `groupBy` groups the results by the specified column name
-     *
-     * @param Builder|Model $query
-     * @param QueryStringData $queryData
-     * @return Builder
      */
     private function parseQueryDataToQuery(Builder|Model $query, QueryStringData $queryData): Builder
     {
@@ -88,15 +85,11 @@ trait QueryBuilder
 
     /**
      * Sort the query
-     *
-     * @param Builder $query
-     * @param Request $request
-     * @return Builder
      */
     public function sort(Builder $query, Request $request): Builder
     {
         foreach (explode(',', $request->query->get('sort')) as $sort) {
-            list($sortCol, $sortDir) = explode('|', $sort);
+            [$sortCol, $sortDir] = explode('|', $sort);
             $query = $query->orderBy($sortCol, $sortDir);
         }
 
@@ -105,9 +98,6 @@ trait QueryBuilder
 
     /**
      * Default sort method
-     *
-     * @param Builder $query
-     * @return Builder
      */
     public function noSort(Builder $query): Builder
     {

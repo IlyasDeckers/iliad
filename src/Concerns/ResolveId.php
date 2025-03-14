@@ -1,14 +1,12 @@
 <?php
 namespace Iliad\Concerns;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 trait ResolveId
 {
     /**
      * Resolve the ID of the logged User.
-     *
-     * @return mixed|null
      */
     public static function resolveId(): mixed
     {

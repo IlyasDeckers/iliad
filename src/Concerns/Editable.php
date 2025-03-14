@@ -2,6 +2,11 @@
 namespace Iliad\Concerns;
 
 trait Editable {
+    /**
+     * @var array<int, string> $variables
+     */
+    protected array $variables = [];
+
     public function formatMessage(): void
     {
         $fields = collect([
@@ -11,45 +16,34 @@ trait Editable {
         foreach ($this->variables as $variable) {
             $this->replace($fields, $variable);
         }
-
-        // dd($this->query->message);
     }
 
-    private function replace($fields, $variable): void
+    private function replace(\Illuminate\Support\Collection $fields, string $variable): void
     {
-        $fields->each(function ($field) use ($variable) {
+        $fields->each(function (string $field) use ($variable) {
             $toReplace = '{{ ' . $variable . ' }}';
             $fieldName = str_replace('-', '_', $variable);
-            $hasVariable = strpos(
-                $this->query[$field], $toReplace
-            );
+            $hasVariable = str_contains($this->query[$field], $toReplace);
 
-            if($hasVariable !== false) {
+            if($hasVariable) {
                 $this->query[$field] = str_replace(
                     $toReplace,
                     $this->setFieldName($fieldName),
                     $this->query[$field]
                 );
-            } 
+            }
         });
     }
 
-    private function setFieldName($fieldName)
+    private function setFieldName(string $fieldName): mixed
     {
-        if ($fieldName === 'total_ex') {
-            $result = $this->purchase->total;
-        } elseif ($fieldName === 'total_inc') {
-            $result = $this->purchase->total_incl;
-        } elseif ($fieldName === 'name') {
-            $result = $this->purchase->timesheet->user->name;
-        } elseif ($fieldName === 'customer') {
-            $result = $this->purchase->timesheet->customer->name;
-        } elseif ($fieldName === 'hours') {
-            $result = $this->purchase->hours;
-        } else {
-            $result = $this->purchase->$fieldName;
-        }
-
-        return $result;
+        return match($fieldName) {
+            'total_ex' => $this->purchase->total,
+            'total_inc' => $this->purchase->total_incl,
+            'name' => $this->purchase->timesheet->user->name,
+            'customer' => $this->purchase->timesheet->customer->name,
+            'hours' => $this->purchase->hours,
+            default => $this->purchase->$fieldName,
+        };
     }
 }

@@ -8,11 +8,8 @@ use Illuminate\Validation\ValidationException;
 trait Validator
 {
     /**
-     * Validate the incomming request.
+     * Validate the incoming request.
      *
-     * @param string $function
-     * @param Request $request
-     * @return void
      * @throws ValidationException
      */
     private function validator(string $function, Request $request): void
@@ -21,45 +18,34 @@ trait Validator
             $this->validate($request,
                 (new $this->rules[$function])->rules()
             );
-        } 
+        }
     }
 
     /**
-     *  Apply rules to the given request
+     * Apply rules to the given request
      *
-     * @param $rules
-     * @param int $status
+     * @param array<int, object> $rules
      * @throws Exception
      */
-    public function enforce($rules, int $status = 412): void
+    public function enforce(array $rules, int $status = 412): void
     {
-        $messages = tap(collect(), function ($messages) use ($rules) {
-            collect($rules)->each(function ($rule) use ($messages) {
+        $messages = collect($rules)
+            ->map(function ($rule) {
                 if (!$rule->passes()) {
-                    $messages->push([
+                    return [
                         'code' => $rule->code(),
                         'message' => $rule->message()
-                    ]);
-
-                    if ($rule->break()) {
-                        return false;
-                    }
+                    ];
                 }
+                return null;
+            })
+            ->filter()
+            ->values();
 
-                return true;
-            });
-        });
-
-        $_messages = '';
-        foreach ($messages as $message) {
-            $_messages = $message['message'] . ', ' . $_messages;
-        }
+        $errorMessages = $messages->pluck('message')->implode(', ');
 
         if (!$messages->isEmpty()) {
-            throw new Exception(
-                $_messages
-            );
+            throw new Exception($errorMessages);
         }
     }
-
 }

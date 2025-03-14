@@ -9,38 +9,30 @@ use Illuminate\Support\ServiceProvider;
 
 /**
  * The exception handler service provider.
- *
  */
 class ExceptionHandlerServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->registerExceptionHandlersRepository();
-
         $this->extendExceptionHandler();
     }
 
     /**
      * Register the custom exception handlers repository.
-     *
-     * @return void
      */
-    private function registerExceptionHandlersRepository()
+    private function registerExceptionHandlersRepository(): void
     {
-        $this->app->singleton(HandlersRepository::class, HandlersRepository::class);
+        $this->app->singleton(HandlersRepository::class);
     }
 
     /**
      * Extend the Laravel default exception handler.
-     *
-     * @return void
      */
-    private function extendExceptionHandler()
+    private function extendExceptionHandler(): void
     {
         $this->app->extend(ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
             return new HandlerDecorator($handler, $app[HandlersRepository::class]);
