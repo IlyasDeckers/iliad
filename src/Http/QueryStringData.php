@@ -6,7 +6,7 @@ use Iliad\DataTransferObjects\Dto;
 
 final class QueryStringData extends Dto
 {
-    public ?string $with;
+    public string|array|null $with;
 
     public ?string $scopes;
 
@@ -25,8 +25,13 @@ final class QueryStringData extends Dto
         return !is_null($this->{$key});
     }
 
-    public function parseToArray(string $key): array
+    public function parseToArray(string|array $key): array
     {
+        if (is_array($this->{$key})) {
+            return $this->{$key};
+        }
+
         return explode(',', $this->{$key});
     }
 }
+
