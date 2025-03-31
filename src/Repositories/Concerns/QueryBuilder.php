@@ -3,7 +3,7 @@
 namespace Iliad\Repositories\Concerns;
 
 use Iliad\Http\QueryStringData;
-use Iliad\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\Contracts\BaseData;
